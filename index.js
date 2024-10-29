@@ -29,7 +29,7 @@ const salt = 10;
 async function run() {
   try {
     // Connect the client to the server	(optional starting in v4.7)
-    //await client.connect();
+    await client.connect();
     const userCol = client.db("totTheMasterDB").collection("users");
     const categoryCol = client.db("totTheMasterDB").collection("categories");
     const productCol = client.db("totTheMasterDB").collection("products"); 
@@ -109,7 +109,7 @@ async function run() {
       app.get('/api/myOrder/:userId', async (req, res) => {
           const result = await orderCol.find({ user_id: req.params.userId }).toArray()
           const data =
-              //await Promise.all(
+              await Promise.all(
                   result.map(async item => {
                       const productData = await getProduct(item.product_id);
                       return {
@@ -143,7 +143,7 @@ async function run() {
       })
 
       app.put('/api/user', async (req, res) => {      
-         // console.log(req.body);      
+          console.log(req.body);      
           const { _id, fullname, photo, role, isAdmin, phone, address } = req.body
           const result = await userCol.updateOne({ _id: new ObjectId(_id) },
               {
@@ -293,8 +293,8 @@ async function run() {
 
       // end API
     // Send a ping to confirm a successful connection
-    //await client.db("admin").command({ ping: 1 });
-   // console.log(
+    await client.db("admin").command({ ping: 1 });
+    console.log(
       "Pinged your deployment. You successfully connected to MongoDB!"
     );
   } finally {
