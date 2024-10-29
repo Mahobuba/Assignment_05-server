@@ -12,5 +12,3 @@ Add the following configuration variables to the .env file:
 - DB_SECRET=your-mongodb-password
 
 - MongoDB URI as -> mongodb+srv://${DB_USER}:${DB_SECRET}@cluster0.mongodb.net/myDatabase?retryWrites=true&w=majority (Use your URI)
-
-# Client side cde: https://github.com/devalienbrain/bootcamp-book-shop-client-user-management-part
